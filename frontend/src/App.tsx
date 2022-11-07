@@ -11,14 +11,14 @@ import { NavLink } from "react-router-dom"
 export const App = (): React.ReactElement => {
   return (
       <Container>
-        <Navbar>
+        <Navbar bg="dark" variant="dark">
             <Container>
                 <Nav className="me-auto">
                   <Nav.Link to="/" as={NavLink}>
                     Home
                   </Nav.Link>
-                  <Nav.Link to="/store" as={NavLink}>
-                    Store
+                  <Nav.Link to="/articles" as={NavLink}>
+                    Articles
                   </Nav.Link>
                   <Nav.Link to="/about" as={NavLink}>
                     About
@@ -26,13 +26,12 @@ export const App = (): React.ReactElement => {
                 </Nav>
             </Container>
         </Navbar>
-        <BrowserRouter>
+
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/articles" element={<Articles />} />
               <Route path="/about" element={<About />} />
           </Routes>
-        </BrowserRouter>
       </Container>
   )
 }
