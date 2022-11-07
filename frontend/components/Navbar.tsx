@@ -1,10 +1,30 @@
 import {Button, Container, Form, Nav, Navbar as NavbarBs} from "react-bootstrap";
 import {NavLink, useLocation} from "react-router-dom";
+import React from "react";
+
+
+const NavbarForm = (): React.ReactElement => {
+    const location = useLocation();
+    return (
+        <>
+        {
+            location.pathname.substring(1) === "articles" ?
+            <Form className="d-flex">
+                <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+                />
+                <Button variant="outline-warning">Search</Button>
+            </Form> : null
+        }
+        </>
+    )
+}
 
 
 export const Navbar = () => {
-    const location = useLocation();
-
     return (
         <NavbarBs bg="dark" variant="dark" style={{marginBottom: "20px" }}>
             <Container>
@@ -19,18 +39,7 @@ export const Navbar = () => {
                     About
                   </Nav.Link>
                 </Nav>
-                {
-                    location.pathname.substring(1) === "articles" ?
-                    <Form className="d-flex">
-                    <Form.Control
-                      type="search"
-                      placeholder="Search"
-                      className="me-2"
-                      aria-label="Search"
-                    />
-                    <Button variant="outline-warning">Search</Button>
-                  </Form> : null
-                }
+                <NavbarForm />
             </Container>
         </NavbarBs>
     )

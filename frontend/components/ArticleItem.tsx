@@ -15,7 +15,7 @@ export const ArticleItem = ({id, title, author, imgUrl}: ArticleItemProps) => {
             <Card.Body className="d-flex flex-column">
                 <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
                     <span className="fs-2">{title}</span>
-                    <span className="ms-2 text-muted">{author}</span>
+                    <span className="ms-2 text-muted">by {author}</span>
                 </Card.Title>
             </Card.Body>
         </Card>
