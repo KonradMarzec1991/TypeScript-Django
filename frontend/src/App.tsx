@@ -1,6 +1,6 @@
 import React from "react";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
-import {Container, Nav} from "react-bootstrap";
+import {Button, Container, Form, Nav} from "react-bootstrap";
 import {Home} from "../pages/Home";
 import {Articles} from "../pages/Articles";
 import {About} from "../pages/About";
@@ -24,6 +24,15 @@ export const App = (): React.ReactElement => {
                     About
                   </Nav.Link>
                 </Nav>
+                <Form className="d-flex">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                />
+                <Button variant="outline-warning">Search</Button>
+              </Form>
             </Container>
         </Navbar>
 
