@@ -1,41 +1,16 @@
 import React from "react";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
-import {Button, Container, Form, Nav} from "react-bootstrap";
+import {Routes, Route} from "react-router-dom";
+import {Container} from "react-bootstrap";
 import {Home} from "../pages/Home";
 import {Articles} from "../pages/Articles";
 import {About} from "../pages/About";
-import {Navbar} from "react-bootstrap";
-import { NavLink } from "react-router-dom"
+import {Navbar} from "../components/Navbar";
 
 
 export const App = (): React.ReactElement => {
   return (
       <Container>
-        <Navbar bg="dark" variant="dark">
-            <Container>
-                <Nav className="me-auto">
-                  <Nav.Link to="/" as={NavLink}>
-                    Home
-                  </Nav.Link>
-                  <Nav.Link to="/articles" as={NavLink}>
-                    Articles
-                  </Nav.Link>
-                  <Nav.Link to="/about" as={NavLink}>
-                    About
-                  </Nav.Link>
-                </Nav>
-                <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="outline-warning">Search</Button>
-              </Form>
-            </Container>
-        </Navbar>
-
+        <Navbar />
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/articles" element={<Articles />} />
