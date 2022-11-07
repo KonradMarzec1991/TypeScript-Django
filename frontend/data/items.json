@@ -27,12 +27,12 @@
     "id": 5,
     "title": "Article 5",
     "author": "Jane Doe",
-    "imgUrl": "/imgs/img1.jpeg"
+    "imgUrl": "/imgs/img5.jpeg"
   },
   {
     "id": 6,
     "title": "Article 6",
     "author": "Jane Doe",
-    "imgUrl": "/imgs/img1.jpeg"
+    "imgUrl": "/imgs/img6.jpeg"
   }
 ]
