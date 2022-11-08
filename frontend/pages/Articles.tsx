@@ -1,4 +1,4 @@
-import {Card, Col, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import articleItems from "../data/items.json"
 import React from "react";
 import {ArticleItem} from "../components/ArticleItem";

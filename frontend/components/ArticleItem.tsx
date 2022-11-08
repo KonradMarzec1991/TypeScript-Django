@@ -30,7 +30,6 @@ const CardWrapper = ({id, title, author, imgUrl}: ArticleItemProps) => {
             </Card.Body>
         </Card>
     )
-
 }
 
 export const ArticleItem = (props: ArticleItemProps) => {
