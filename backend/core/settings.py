@@ -22,6 +22,12 @@ INSTALLED_APPS = [
     "graphene_django"
 ]
 
+MY_APPS = [
+    "article"
+]
+
+INSTALLED_APPS += MY_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
