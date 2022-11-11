@@ -4,7 +4,6 @@ import React from "react";
 import {ArticleItem} from "../components/ArticleItem";
 
 
-
 export const Articles = (): React.ReactElement => {
     return (
     <>

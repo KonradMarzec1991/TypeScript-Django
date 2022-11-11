@@ -8,7 +8,11 @@ SECRET_KEY = 'django-insecure-#ucvs93_a98s)9uqsvn*4(+7740*0!xgjeb0-ga9fn&n9-vdnb
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5173",
+]
 
 
 # Application definition
@@ -20,18 +24,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "graphene_django"
 ]
 
 MY_APPS = [
     "article"
 ]
 
+OTHER_APPS = [
+    "graphene_django",
+    "corsheaders"
+]
+
 INSTALLED_APPS += MY_APPS
+INSTALLED_APPS += OTHER_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
