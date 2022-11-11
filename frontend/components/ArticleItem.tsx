@@ -1,15 +1,17 @@
-import {useState} from "react";
 import {Card} from "react-bootstrap";
+import {useState} from "react";
+import {addUrlToImage, combineAuthors} from "../utils/utils";
 
 
 type ArticleItemProps = {
-    id: number,
+    id: string,
     title: string,
-    author: string,
-    imgUrl: string
+    category: string,
+    image: string,
+    authors: {username: string}[]
 }
 
-const CardWrapper = ({id, title, author, imgUrl}: ArticleItemProps) => {
+const CardWrapper = ({id, title, authors, image}: ArticleItemProps) => {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -21,11 +23,16 @@ const CardWrapper = ({id, title, author, imgUrl}: ArticleItemProps) => {
                 transitionTimingFunction: "cubic-bezier(0.1, 0.7, 1.0, 0.1)"
             }}
         >
-            <Card.Img variant="top" src={imgUrl} height="200px" style={{ objectFit: "cover" }}/>
+            <Card.Img
+                variant="top"
+                src={addUrlToImage(image)}
+                height="200px"
+                style={{ objectFit: "cover" }}
+            />
             <Card.Body className="d-flex flex-column">
                 <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
                     <span className="fs-2">{title}</span>
-                    <span className="ms-2 text-muted">by {author}</span>
+                    <span className="ms-2 text-muted">by {combineAuthors(authors)}</span>
                 </Card.Title>
             </Card.Body>
         </Card>
