@@ -11,12 +11,13 @@ class TimeStampModel(models.Model):
         abstract = True
 
 
-class Category(models.Model):
-    HISTORY = 1
-    NATURE = 2
-    SCIENCE = 3
-    PHILOSOPHY = 4
-    POLITICAL = 5
+class Article(TimeStampModel):
+    GENERAL = "GENERAL"
+    HISTORY = "HISTORY"
+    NATURE = "NATURE"
+    SCIENCE = "SCIENCE"
+    PHILOSOPHY = "PHILOSOPHY"
+    POLITICAL = "POLITICAL"
 
     CHOICES = (
         (HISTORY, _("History")),
@@ -26,19 +27,10 @@ class Category(models.Model):
         (POLITICAL, _("Political")),
     )
 
-    name = models.CharField(choices=CHOICES, max_length=15)
-
-    class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
-
-    def __str__(self):
-        return self.name
-
-
-class Article(TimeStampModel):
     title = models.CharField(max_length=255)
     authors = models.ManyToManyField(to=get_user_model(), related_name="articles")
+    image = models.ImageField(upload_to="files/images", null=True, blank=True)
+    category = models.CharField(choices=CHOICES, max_length=15, null=True, blank=True)
 
     class Meta:
         verbose_name = "Article"
