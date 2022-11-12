@@ -29,9 +29,9 @@ export const Articles = (): React.ReactElement => {
         // { variables: {title: "History"}}
     );
 
-    if (error) return <div>Error</div>;
-    if (!data) return <div>Null</div>;
     if (loading) return <p>Loading...</p>;
+    if (error) return <div>Error</div>;
+    if (!data) return <div>Not data</div>;
 
     const {allArticles} = data;
 
