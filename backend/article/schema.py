@@ -7,23 +7,6 @@ from graphene_django.filter import DjangoFilterConnectionField
 from .filters import ArticleFilter
 from .models import Article
 
-import graphene
-
-
-class ExtendedConnection(graphene.Connection):
-    class Meta:
-        abstract = True
-
-    total_count = graphene.Int()
-    edge_count = graphene.Int()
-
-    def resolve_total_count(self, info, **kwargs):
-        return self.length
-
-    def resolve_edge_count(self, info, **kwargs):
-        return len(self.edges)
-
-
 
 class UserType(DjangoObjectType):
     class Meta:
@@ -35,7 +18,6 @@ class ArticleType(DjangoObjectType):
         model = Article
         filterset_class = ArticleFilter
         interfaces = (relay.Node, )
-        connection_class = ExtendedConnection
 
 
 class Query(graphene.ObjectType):
