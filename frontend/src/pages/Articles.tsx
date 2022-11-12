@@ -4,6 +4,10 @@ import {ArticleItem} from "../components/ArticleItem";
 import {useQuery} from "@apollo/client";
 import {ALL_ARTICLES} from "../apollo/queries/allArticles";
 
+type Author = {
+    username: string
+}
+
 type Article = {
     id: string,
     createdAt: string
@@ -11,12 +15,19 @@ type Article = {
     title: string
     category: string
     image: string
-    authors: {username: string}[]
+    authors: Author[]
+}
+
+type ArticleNode = {
+    node: Article
 }
 
 
 export const Articles = (): React.ReactElement => {
-    const {error, loading, data} = useQuery(ALL_ARTICLES);
+    const {error, loading, data} = useQuery(
+        ALL_ARTICLES,
+        // { variables: {title: "Natura"}}
+    );
 
     if (error) return <div>Error</div>;
     if (!data) return <div>Null</div>;
@@ -27,9 +38,9 @@ export const Articles = (): React.ReactElement => {
     return (
     <>
         <Row md={2} xs={1} lg={3} className="g-3">
-            {allArticles.map((article: Article) => (
-                <Col key={article.id}>
-                    <ArticleItem {...article} />
+            {allArticles.edges.map((item: ArticleNode) => (
+                <Col key={item.node.id}>
+                    <ArticleItem {...item.node} />
                 </Col>
             ))}
         </Row>

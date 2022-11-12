@@ -2,13 +2,16 @@ import {Card} from "react-bootstrap";
 import {useState} from "react";
 import {addUrlToImage, combineAuthors} from "../utils/utils";
 
+type Author = {
+    username: string
+}
 
 type ArticleItemProps = {
     id: string,
     title: string,
     category: string,
     image: string,
-    authors: {username: string}[]
+    authors: Author[]
 }
 
 const CardWrapper = ({id, title, authors, image}: ArticleItemProps) => {
