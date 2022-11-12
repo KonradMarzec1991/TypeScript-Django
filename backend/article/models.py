@@ -1,9 +1,17 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from model_utils.fields import UUIDField
 
 
-class TimeStampModel(models.Model):
+class UUIDModel(models.Model):
+    uuid = UUIDField(primary_key=True, version=4, editable=False)
+
+    class Meta:
+        abstract = True
+
+
+class TimeStampModel(UUIDModel):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
@@ -31,6 +39,7 @@ class Article(TimeStampModel):
     authors = models.ManyToManyField(to=get_user_model(), related_name="articles")
     image = models.ImageField(upload_to="articles/", null=True, blank=True)
     category = models.CharField(choices=CHOICES, max_length=15, null=True, blank=True)
+    content = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name = "Article"

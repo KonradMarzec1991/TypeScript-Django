@@ -8,12 +8,12 @@ from .filters import ArticleFilter
 from .models import Article
 
 
-class UserType(DjangoObjectType):
+class UserNode(DjangoObjectType):
     class Meta:
         model = get_user_model()
 
 
-class ArticleType(DjangoObjectType):
+class ArticleNode(DjangoObjectType):
     class Meta:
         model = Article
         filterset_class = ArticleFilter
@@ -21,5 +21,5 @@ class ArticleType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    article = relay.Node.Field(ArticleType)
-    all_articles = DjangoFilterConnectionField(ArticleType, required=False)
+    article = relay.Node.Field(ArticleNode)
+    all_articles = DjangoFilterConnectionField(ArticleNode, required=False)

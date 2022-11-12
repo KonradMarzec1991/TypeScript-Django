@@ -13,6 +13,7 @@
     "@apollo/react-hooks": "^4.0.0",
     "apollo-boost": "^0.4.9",
     "bootstrap": "^5.2.2",
+    "buffer": "^6.0.3",
     "graphql": "^15.8.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
