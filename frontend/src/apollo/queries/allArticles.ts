@@ -9,7 +9,7 @@ query allArticlesQuery(
 	$last: Int
 	$title: String
 	$category: String
-	$author: String
+	$authors: String
 ) {
 	allArticles(
 		offset: $offset
@@ -19,7 +19,7 @@ query allArticlesQuery(
 		last: $last
 		title: $title
 		category: $category
-		author: $author
+		authors: $authors
 	) {
 		edges {
 			node {
@@ -27,10 +27,10 @@ query allArticlesQuery(
 				createdAt
 				modifiedAt
 				title
+				category
 				authors {
 					username
 				}
-				category
 				image
 			}
 		}

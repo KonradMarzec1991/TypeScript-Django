@@ -26,7 +26,7 @@ type ArticleNode = {
 export const Articles = (): React.ReactElement => {
     const {error, loading, data} = useQuery(
         ALL_ARTICLES,
-        // { variables: {title: "Natura"}}
+        // { variables: {title: "History"}}
     );
 
     if (error) return <div>Error</div>;
