@@ -35,6 +35,7 @@ class Article(TimeStampModel):
     class Meta:
         verbose_name = "Article"
         verbose_name_plural = "Articles"
+        ordering = ("-created_at", )
 
     def __str__(self):
         return self.title
