@@ -1,5 +1,5 @@
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {ArticleItem} from "../containers/ArticleItem";
 import {useQuery} from "@apollo/client";
 import {ALL_ARTICLES} from "../apollo/queries/allArticles";
@@ -28,9 +28,25 @@ export const Articles = (): React.ReactElement => {
     const [searchQuery, setSearchQuery] = useState("");
     const {error, loading, data, refetch} = useQuery(ALL_ARTICLES);
 
-    const handleSubmitQuery = (e: any) => {
+    const handleSubmitQuery = (e: any): void => {
         e.preventDefault();
-        refetch({title: searchQuery});
+        console.log(searchQuery);
+        refetch({title: searchQuery}).then(r => console.log(r));
+    }
+
+    const handleResetQuery = (e: any): void => {
+        e.preventDefault();
+    }
+
+    const handlers = {
+        submit1: handleSubmitQuery,
+        submit2: handleResetQuery
+    }
+
+    const submitHandler = (e: any) => {
+        const {id} = e.nativeEvent.submitter;
+        // @ts-ignore
+        handlers[id](e)
     }
 
     if (loading) return <p>Loading...</p>;
@@ -46,7 +62,7 @@ export const Articles = (): React.ReactElement => {
                     <Col xs={6}>
                         <Form
                             className="d-flex"
-                            onSubmit={handleSubmitQuery}
+                            onSubmit={submitHandler}
                             style={{marginBottom: "20px"}}
                         >
                           <Form.Control
@@ -57,14 +73,28 @@ export const Articles = (): React.ReactElement => {
                             value={searchQuery}
                             onChange={(e: any) => setSearchQuery(e.target.value)}
                           />
-                          <Button variant="outline-warning" type="submit">Search</Button>
+                          <Button
+                              id="submit1"
+                              variant="outline-warning"
+                              type="submit"
+                              className="me-2"
+                          >
+                              Search
+                          </Button>
+                          <Button
+                              id="submit2"
+                              variant="outline-secondary"
+                              type="submit"
+                          >
+                              Reset
+                          </Button>
                       </Form>
                     </Col>
                     <Col></Col>
                 </Row>
             </Container>
 
-            {allArticles.edges.length ==! 0 ?
+            {allArticles.edges.length !== 0 ?
             <Row md={2} xs={1} lg={3} className="g-3">
                 {allArticles.edges.map((item: ArticleNode) => (
                     <Col key={item.node.id}>
