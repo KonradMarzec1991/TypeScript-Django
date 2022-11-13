@@ -1,36 +1,6 @@
-import {Button, Container, Form, Nav, Navbar as NavbarBs} from "react-bootstrap";
-import {NavLink, useLocation} from "react-router-dom";
-import React, {useState} from "react";
+import {Container, Nav, Navbar as NavbarBs} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
 
-
-const NavbarForm = (): React.ReactElement => {
-    const location = useLocation();
-    const [searchQuery, setSearchQuery] = useState("");
-
-    const handleSubmitQuery = (e: any) => {
-        e.preventDefault();
-        console.log(searchQuery)
-    }
-
-    return (
-        <>
-        {
-            location.pathname.substring(1) === "articles" ?
-            <Form className="d-flex" onSubmit={handleSubmitQuery}>
-                <Form.Control
-                  type="input"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                  value={searchQuery}
-                  onChange={(e: any) => setSearchQuery(e.target.value)}
-                />
-                <Button variant="outline-warning" type="submit">Search</Button>
-            </Form> : null
-        }
-        </>
-    )
-}
 
 export const Navbar = () => {
     return (
@@ -47,7 +17,6 @@ export const Navbar = () => {
                     About
                   </Nav.Link>
                 </Nav>
-                <NavbarForm />
             </Container>
         </NavbarBs>
     )
