@@ -1,9 +1,9 @@
-import {Col, Container, Row} from "react-bootstrap";
-import React from "react";
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import React, {useState} from "react";
 import {ArticleItem} from "../containers/ArticleItem";
 import {useQuery} from "@apollo/client";
 import {ALL_ARTICLES} from "../apollo/queries/allArticles";
-import {SearchComponent} from "../components/Search";
+
 
 type Author = {
     username: string
@@ -24,8 +24,14 @@ type ArticleNode = {
 }
 
 
-const Articles = (): React.ReactElement => {
+export const Articles = (): React.ReactElement => {
     const {error, loading, data} = useQuery(ALL_ARTICLES);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSubmitQuery = (e: any) => {
+        e.preventDefault();
+        console.log(searchQuery)
+    }
 
     if (loading) return <p>Loading...</p>;
     if (error) return <div>Error</div>;
@@ -34,22 +40,33 @@ const Articles = (): React.ReactElement => {
     const {allArticles} = data;
 
     return (
-        <Row md={2} xs={1} lg={3} className="g-3">
-            {allArticles.edges.map((item: ArticleNode) => (
-                <Col key={item.node.id}>
-                    <ArticleItem {...item.node} />
-                </Col>
-            ))}
-        </Row>
-    )
-}
-
-
-export const ArticlesComponent = () => {
-    return (
         <>
-            <SearchComponent/>
-            <Articles/>
+            <Container>
+                <Row>
+                    <Col></Col>
+                    <Col xs={6}>
+                        <Form className="d-flex" onSubmit={handleSubmitQuery} style={{marginBottom: "20px"}}>
+                          <Form.Control
+                            type="input"
+                            placeholder="Your favourite article..."
+                            className="me-2"
+                            aria-label="Search"
+                            value={searchQuery}
+                            onChange={(e: any) => setSearchQuery(e.target.value)}
+                          />
+                          <Button variant="outline-warning" type="submit">Search</Button>
+                      </Form>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
+            <Row md={2} xs={1} lg={3} className="g-3">
+                {allArticles.edges.map((item: ArticleNode) => (
+                    <Col key={item.node.id}>
+                        <ArticleItem {...item.node} />
+                    </Col>
+                ))}
+            </Row>
         </>
     )
 }
