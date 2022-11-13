@@ -1,5 +1,5 @@
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {ArticleItem} from "../containers/ArticleItem";
 import {useQuery} from "@apollo/client";
 import {ALL_ARTICLES} from "../apollo/queries/allArticles";
@@ -30,13 +30,20 @@ export const Articles = (): React.ReactElement => {
 
     const handleSubmitQuery = (e: any): void => {
         e.preventDefault();
-        console.log(searchQuery);
-        refetch({title: searchQuery}).then(r => console.log(r));
+        refetch({search: searchQuery});
     }
 
     const handleResetQuery = (e: any): void => {
         e.preventDefault();
+        // setSearchQuery("");
+        // console.log(searchQuery);
+        // console.log(refetch());
     }
+
+    // useEffect(() => {
+    //     console.log("ładowanie")
+    //     refetch();
+    // }, [searchQuery]);
 
     const handlers = {
         submit1: handleSubmitQuery,
@@ -50,6 +57,7 @@ export const Articles = (): React.ReactElement => {
     }
 
     if (loading) return <p>Loading...</p>;
+    console.log(error);
     if (error) return <div>Error</div>;
 
     const {allArticles} = data;

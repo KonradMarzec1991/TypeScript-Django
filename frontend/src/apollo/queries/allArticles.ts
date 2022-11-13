@@ -10,6 +10,7 @@ query allArticlesQuery(
 	$title: String
 	$category: String
 	$authors: String
+	$search: String
 ) {
 	allArticles(
 		offset: $offset
@@ -20,6 +21,7 @@ query allArticlesQuery(
 		title: $title
 		category: $category
 		authors: $authors
+		search: $search
 	) {
 		edges {
 			node {
