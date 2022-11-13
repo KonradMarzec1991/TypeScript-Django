@@ -36,6 +36,7 @@ class Article(TimeStampModel):
     )
 
     title = models.CharField(max_length=255)
+    # abstract = models.CharField(max_length=255)
     authors = models.ManyToManyField(to=get_user_model(), related_name="articles")
     image = models.ImageField(upload_to="articles/", null=True, blank=True)
     category = models.CharField(choices=CHOICES, max_length=15, null=True, blank=True)
