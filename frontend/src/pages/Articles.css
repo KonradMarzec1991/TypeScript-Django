@@ -6,3 +6,9 @@ a:hover {
     color: darkgoldenrod;
     cursor: pointer;
 }
+
+.results {
+    padding-top: 30px;
+    font-size: 24px;
+    font-weight: 500;
+}

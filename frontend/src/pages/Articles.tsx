@@ -1,5 +1,5 @@
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ArticleItem} from "../containers/ArticleItem";
 import {useQuery} from "@apollo/client";
 import {ALL_ARTICLES} from "../apollo/queries/allArticles";
@@ -25,17 +25,16 @@ type ArticleNode = {
 
 
 export const Articles = (): React.ReactElement => {
-    const {error, loading, data} = useQuery(ALL_ARTICLES);
     const [searchQuery, setSearchQuery] = useState("");
+    const {error, loading, data, refetch} = useQuery(ALL_ARTICLES);
 
     const handleSubmitQuery = (e: any) => {
         e.preventDefault();
-        console.log(searchQuery)
+        refetch({title: searchQuery});
     }
 
     if (loading) return <p>Loading...</p>;
     if (error) return <div>Error</div>;
-    if (!data) return <div>Not data</div>;
 
     const {allArticles} = data;
 
@@ -45,7 +44,11 @@ export const Articles = (): React.ReactElement => {
                 <Row>
                     <Col></Col>
                     <Col xs={6}>
-                        <Form className="d-flex" onSubmit={handleSubmitQuery} style={{marginBottom: "20px"}}>
+                        <Form
+                            className="d-flex"
+                            onSubmit={handleSubmitQuery}
+                            style={{marginBottom: "20px"}}
+                        >
                           <Form.Control
                             type="input"
                             placeholder="Your favourite article..."
@@ -60,13 +63,21 @@ export const Articles = (): React.ReactElement => {
                     <Col></Col>
                 </Row>
             </Container>
+
+            {allArticles.edges.length ==! 0 ?
             <Row md={2} xs={1} lg={3} className="g-3">
                 {allArticles.edges.map((item: ArticleNode) => (
                     <Col key={item.node.id}>
                         <ArticleItem {...item.node} />
                     </Col>
                 ))}
+            </Row> :
+            <Row>
+                <Col></Col>
+                <Col><div className="results">Sorry mate, there are no results...</div></Col>
+                <Col></Col>
             </Row>
+            }
         </>
     )
 }
