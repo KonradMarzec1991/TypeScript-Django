@@ -1,8 +1,10 @@
 import {useParams} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {ARTICLE} from "../apollo/queries/article";
-import {addUrlToImage} from "../utils/utils";
+import {addUrlToImage, combineAuthors} from "../utils/utils";
 import React from "react";
+import "./Article.css";
+
 
 export const Article = () => {
     const {id} = useParams();
@@ -17,11 +19,13 @@ export const Article = () => {
 
     const {article} = data;
     const {title, authors, image, content} = article;
-    console.log(content);
 
     return (
         <div>
-            <img src={addUrlToImage(image)} alt=""/>
+            <img src={addUrlToImage(image)} alt="" className="center" />
+            <div>
+                <span>{title}</span> by {combineAuthors(authors)}
+            </div>
             <p>{content}</p>
         </div>
     )

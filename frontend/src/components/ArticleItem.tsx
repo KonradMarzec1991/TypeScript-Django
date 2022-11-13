@@ -1,6 +1,9 @@
 import {Card} from "react-bootstrap";
 import {useState} from "react";
 import {addUrlToImage, combineAuthors} from "../utils/utils";
+import {Link} from "react-router-dom";
+import "./ArticleItem.css";
+
 
 type Author = {
     username: string
@@ -43,7 +46,11 @@ const CardWrapper = ({id, title, authors, image}: ArticleItemProps) => {
 }
 
 export const ArticleItem = (props: ArticleItemProps) => {
+    const link = `/articles/${props.id}`;
+
     return (
-        <CardWrapper {...props}/>
+        <Link to={link}>
+            <CardWrapper {...props}/>
+        </Link>
     )
 }

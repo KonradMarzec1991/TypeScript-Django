@@ -24,10 +24,7 @@ type ArticleNode = {
 
 
 export const Articles = (): React.ReactElement => {
-    const {error, loading, data} = useQuery(
-        ALL_ARTICLES,
-        // { variables: {title: "History"}}
-    );
+    const {error, loading, data} = useQuery(ALL_ARTICLES);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <div>Error</div>;
