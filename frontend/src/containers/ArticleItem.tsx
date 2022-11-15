@@ -2,7 +2,7 @@ import {Card} from "react-bootstrap";
 import {useState} from "react";
 import {addUrlToImage, combineAuthors} from "../utils/utils";
 import {Link} from "react-router-dom";
-import "../pages/Articles.css";
+import "./ArticleItem.css";
 
 
 type Author = {

@@ -18,7 +18,6 @@ const Content = (data: any) => {
     )
 }
 
-
 export const Article = () => {
     const {id} = useParams();
     const {error, loading, data} = useQuery(
