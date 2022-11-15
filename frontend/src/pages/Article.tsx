@@ -5,6 +5,18 @@ import {ARTICLE} from "../apollo/queries/article";
 import {addUrlToImage, combineAuthors} from "../utils/utils";
 import "./Article.css";
 import {Col, Container, Row} from "react-bootstrap";
+import Moment from 'moment';
+
+
+const Content = (contentPieces: string[]) => {
+        return (
+            <>
+                {contentPieces.map(piece => {
+                    return <><div>{piece}</div><br/></>
+                })}
+            </>
+        )
+}
 
 
 export const Article = () => {
@@ -19,7 +31,10 @@ export const Article = () => {
     if (!data) return <div>Not data</div>;
 
     const {article} = data;
-    const {title, authors, image, content} = article;
+    const {title, authors, image, content, createdAt} = article;
+
+    const contentPieces: string[] = content.replaceAll("\r", "").split("\n").filter((piece: string) => piece !== "\\n");
+    console.log(contentPieces);
 
     return (
         <Container>
@@ -29,7 +44,11 @@ export const Article = () => {
                     <span className="display-6">{title}</span>
                     <span className="display-7"> by {combineAuthors(authors)}</span>
                 </Col>
-                <Col></Col>
+                <Col>
+                    <div style={{textAlign: "right"}}>
+                        Added at {Moment(createdAt).format("DD/MM/yyyy")}
+                    </div>
+                </Col>
             </Row>
             <Row style={{marginBottom: "20px"}}>
                 <Col xs lg="12">
@@ -37,7 +56,7 @@ export const Article = () => {
                 </Col>
             </Row>
             <Row>
-                {content}
+                <Content contentPieces={contentPieces}/>
             </Row>
         </Container>
     )
