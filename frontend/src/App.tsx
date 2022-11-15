@@ -6,6 +6,7 @@ import {Articles} from "./pages/Articles";
 import {About} from "./pages/About";
 import {Navbar} from "./components/Navbar";
 import {Article} from "./pages/Article";
+import {Contact} from "./pages/Contact";
 
 
 export const App = (): React.ReactElement => {
@@ -16,6 +17,7 @@ export const App = (): React.ReactElement => {
               <Route path="/" element={<Home />} />
               <Route path="/articles" element={<Articles />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/articles/:id" element={<Article />} />
           </Routes>
       </Container>

@@ -8,13 +8,16 @@ export const Navbar = () => {
             <Container>
                 <Nav className="me-auto">
                   <Nav.Link to="/" as={NavLink}>
-                    Home
+                      Home
                   </Nav.Link>
                   <Nav.Link to="/articles" as={NavLink}>
                     Articles
                   </Nav.Link>
                   <Nav.Link to="/about" as={NavLink}>
-                    About
+                    About Us
+                  </Nav.Link>
+                  <Nav.Link to="/contact" as={NavLink}>
+                    Contact
                   </Nav.Link>
                 </Nav>
             </Container>
