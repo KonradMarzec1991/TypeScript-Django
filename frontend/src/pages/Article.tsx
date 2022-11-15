@@ -8,14 +8,14 @@ import {Col, Container, Row} from "react-bootstrap";
 import Moment from 'moment';
 
 
-const Content = (contentPieces: string[]) => {
-        return (
-            <>
-                {contentPieces.map(piece => {
-                    return <><div>{piece}</div><br/></>
-                })}
-            </>
-        )
+const Content = (data: any) => {
+    return (
+        <>
+            {data.contentPieces.map((piece: any) => {
+                return <div style={{marginBottom: "10px", textAlign: "justify"}}>{piece}</div>
+            })}
+        </>
+    )
 }
 
 
@@ -33,8 +33,9 @@ export const Article = () => {
     const {article} = data;
     const {title, authors, image, content, createdAt} = article;
 
-    const contentPieces: string[] = content.replaceAll("\r", "").split("\n").filter((piece: string) => piece !== "\\n");
-    console.log(contentPieces);
+    const contentPieces: string[] = (
+        content.replaceAll("\r", "").split("\n").filter((piece: string) => piece !== "\\n")
+    );
 
     return (
         <Container>
@@ -56,7 +57,7 @@ export const Article = () => {
                 </Col>
             </Row>
             <Row>
-                <Content contentPieces={contentPieces}/>
+                <Content contentPieces={contentPieces} />
             </Row>
         </Container>
     )
