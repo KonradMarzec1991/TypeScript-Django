@@ -12,7 +12,12 @@ const Content = (data: any) => {
     return (
         <>
             {data.contentPieces.map((piece: any) => {
-                return <div style={{marginBottom: "10px", textAlign: "justify"}}>{piece}</div>
+                return <div style={{
+                    marginBottom: "10px",
+                    textAlign: "justify"
+                }}>
+                    {piece}
+                </div>
             })}
         </>
     )

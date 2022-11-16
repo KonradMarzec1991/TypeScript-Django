@@ -7,6 +7,7 @@ import {About} from "./pages/About";
 import {Navbar} from "./components/Navbar";
 import {Article} from "./pages/Article";
 import {Contact} from "./pages/Contact";
+import {Footer} from "./components/Footer";
 
 
 export const App = (): React.ReactElement => {
@@ -20,6 +21,7 @@ export const App = (): React.ReactElement => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/articles/:id" element={<Article />} />
           </Routes>
+        <Footer />
       </Container>
   )
 }
