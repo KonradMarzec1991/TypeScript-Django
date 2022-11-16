@@ -4,7 +4,7 @@ import {useQuery} from "@apollo/client";
 import {ARTICLE} from "../apollo/queries/article";
 import {addUrlToImage, combineAuthors} from "../utils/utils";
 import "./Article.css";
-import {Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import Moment from 'moment';
 
 
@@ -38,26 +38,28 @@ export const Article = () => {
 
     return (
         <Container>
-            <Row className="justify-content-md-center" style={{marginBottom: "20px"}}>
-                <Col></Col>
-                <Col>
-                    <span className="display-6">{title}</span>
-                    <span className="display-7"> by {combineAuthors(authors)}</span>
-                </Col>
-                <Col>
-                    <div style={{textAlign: "right"}}>
-                        Added at {Moment(createdAt).format("DD/MM/yyyy")}
-                    </div>
-                </Col>
-            </Row>
-            <Row style={{marginBottom: "20px"}}>
-                <Col xs lg="12">
-                        <img src={addUrlToImage(image)} alt="" className="center" />
-                </Col>
-            </Row>
-            <Row>
-                <Content contentPieces={contentPieces} />
-            </Row>
+            <section>
+                <p style={{float: "right"}}>
+                    Added at {Moment(createdAt).format("DD/MM/yyyy")}
+                </p>
+                <div style={{float: "left", marginRight: "1rem"}}>
+                    <img src={addUrlToImage(image)} alt="" style={{width: "500px"}} />
+                </div>
+                <div>
+                    <h2 style={{
+                        display: "block",
+                        textAlign: "center",
+                        marginBottom: "0",
+                        marginLeft: "2rem"
+                    }}>
+                        {title}
+                    </h2>
+                    <p style={{ textAlign: "center", marginBottom: "1.5rem"}}>
+                        by {combineAuthors(authors)}
+                    </p>
+                    <Content contentPieces={contentPieces} />
+                </div>
+            </section>
         </Container>
     )
 }
