@@ -12,16 +12,18 @@ import {Footer} from "./components/Footer";
 
 export const App = (): React.ReactElement => {
   return (
-      <Container>
-        <Navbar />
-          <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/articles" element={<Articles />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/articles/:id" element={<Article />} />
-          </Routes>
-        <Footer />
-      </Container>
+      <>
+        <Container style={{ minHeight: "100vh"}}>
+            <Navbar />
+              <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/articles" element={<Articles />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/articles/:id" element={<Article />} />
+              </Routes>
+          </Container>
+          <Footer />
+      </>
   )
 }
