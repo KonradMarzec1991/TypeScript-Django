@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from backend.article.models import Article
+from article.models import Article
 
 
 class ArticleSerializer(serializers.ModelSerializer):
