@@ -19,7 +19,6 @@ class ArticleFilter(FilterSet):
         model = Article
 
     def search_filter(self, qs, name, value):
-        print(value)
         if value:
             return qs.filter(
                 Q(title__icontains=value) |

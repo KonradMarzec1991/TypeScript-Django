@@ -16,8 +16,6 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,7 +30,7 @@ MY_APPS = [
 ]
 
 OTHER_APPS = [
-    "graphene_django",
+    "rest_framework",
     "corsheaders",
     "django_filters",
     "django_extensions"
